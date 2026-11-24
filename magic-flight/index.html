@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f5f1" />
+  <title>MAGIC FLIGHT | xm-i.net</title>
+  <meta name="description" content="1990年代後半にNECのパソコンなどにプリインストールされていたタイピングソフト「MAGIC FLIGHT」のブラウザ再現版。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" />
+</head>
+
+<body>
+  <div class="mf-shell">
+    <header class="mf-header">
+      <div class="mf-topbar">
+        <a href="/" class="header-link">
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+          作ったもの一覧へ戻る
+        </a>
+
+        <button type="button" id="sound-toggle" class="header-link" aria-pressed="true">
+          <svg class="btn-icon mf-sound-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path class="mf-sound-wave" d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            <path class="mf-sound-wave" d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+          </svg>
+          <span id="sound-toggle-label">効果音 ON</span>
+        </button>
+      </div>
+
+      <div class="mf-intro">
+        <h1 class="mf-title">MAGIC FLIGHT</h1>
+        <p class="mf-subtitle">1990年代後半にNECのパソコンなどにプリインストールされていたタイピングソフトの再現版。</p>
+      </div>
+    </header>
+
+    <main class="mf-main">
+      <section class="mf-stage-panel" aria-label="MAGIC FLIGHT ゲーム画面">
+        <div id="win98-desktop" class="win98-desktop">
+          <div class="win98-workspace">
+            <div class="win98-icons">
+              <div class="win98-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="1" width="12" height="9" fill="#000000" />
+                  <rect x="2" y="1" width="11" height="8" fill="#dfdfdf" />
+                  <rect x="3" y="2" width="9" height="6" fill="#808080" />
+                  <rect x="4" y="3" width="8" height="5" fill="#008080" />
+                  <rect x="4" y="3" width="2" height="1" fill="#00ffff" />
+                  <rect x="5" y="10" width="6" height="1" fill="#808080" />
+                  <rect x="1" y="11" width="14" height="4" fill="#000000" />
+                  <rect x="1" y="11" width="13" height="3" fill="#c0c0c0" />
+                  <rect x="2" y="12" width="11" height="1" fill="#dfdfdf" />
+                  <rect x="8" y="12" width="4" height="1" fill="#000000" />
+                  <rect x="3" y="12" width="1" height="1" fill="#00ff00" />
+                </svg>
+                <span>マイ<br />コンピュータ</span>
+              </div>
+
+              <div class="win98-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="1" width="6" height="3" fill="#ffffff" />
+                  <rect x="9" y="2" width="3" height="2" fill="#dfdfdf" />
+                  <rect x="2" y="3" width="12" height="2" fill="#000000" />
+                  <rect x="3" y="3" width="10" height="1" fill="#dfdfdf" />
+                  <rect x="3" y="5" width="10" height="10" fill="#000000" />
+                  <rect x="4" y="5" width="8" height="9" fill="#c0c0c0" />
+                  <rect x="4" y="5" width="2" height="9" fill="#dfdfdf" />
+                  <rect x="10" y="5" width="2" height="9" fill="#808080" />
+                  <rect x="6" y="7" width="4" height="1" fill="#008000" />
+                  <rect x="5" y="8" width="2" height="3" fill="#00aa00" />
+                  <rect x="9" y="8" width="2" height="3" fill="#008000" />
+                  <rect x="6" y="11" width="4" height="1" fill="#00aa00" />
+                </svg>
+                <span>ごみ箱</span>
+              </div>
+
+              <button
+                type="button"
+                id="desktop-launch-mf"
+                class="win98-icon win98-icon--app"
+                title="MAGIC FLIGHT を起動"
+                aria-label="MAGIC FLIGHT を起動"
+              >
+                <svg width="32" height="32" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1" y="1" width="14" height="14" fill="#000000" />
+                  <rect x="1" y="1" width="13" height="13" fill="#dfdfdf" />
+                  <rect x="2" y="2" width="11" height="11" fill="#001848" />
+                  <rect x="11" y="3" width="2" height="2" fill="#ffff66" />
+                  <rect x="3" y="4" width="1" height="1" fill="#ffffff" />
+                  <rect x="8" y="4" width="2" height="2" fill="#9933ff" />
+                  <rect x="7" y="6" width="3" height="2" fill="#7722cc" />
+                  <rect x="6" y="8" width="5" height="1" fill="#ffcc00" />
+                  <rect x="4" y="9" width="8" height="2" fill="#551199" />
+                  <rect x="2" y="11" width="11" height="2" fill="#00aa88" />
+                </svg>
+                <span>MAGIC FLIGHT</span>
+              </button>
+            </div>
+
+            <div id="win98-window" class="win98-window">
+              <div class="win98-titlebar">
+                <div class="win98-titlebar-left">
+                  <svg width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="14" height="14" fill="#001848" />
+                    <rect x="11" y="2" width="2" height="2" fill="#ffff66" />
+                    <rect x="8" y="3" width="2" height="2" fill="#9933ff" />
+                    <rect x="7" y="5" width="3" height="2" fill="#7722cc" />
+                    <rect x="6" y="7" width="5" height="1" fill="#ffcc00" />
+                    <rect x="4" y="8" width="8" height="2" fill="#551199" />
+                    <rect x="2" y="11" width="12" height="3" fill="#00aa88" />
+                  </svg>
+                  <span class="win98-titlebar-text">MAGIC FLIGHT</span>
+                </div>
+
+                <div class="win98-titlebar-controls">
+                  <span class="win98-caption-btn" aria-hidden="true">
+                    <svg width="9" height="9" viewBox="0 0 9 9" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="1" y="6" width="6" height="2" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <span class="win98-caption-btn win98-caption-btn--disabled" aria-hidden="true">
+                    <svg width="9" height="9" viewBox="0 0 9 9" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1h7v7H1V1zm1 2v4h5V3H2z" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <button
+                    type="button"
+                    id="win98-close-btn"
+                    class="win98-caption-btn win98-close-btn"
+                    title="閉じる"
+                    aria-label="MAGIC FLIGHT を閉じる"
+                  >
+                    <svg width="9" height="9" viewBox="0 0 9 9" shape-rendering="crispEdges" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1h2v1h1v1h1V2h1V1h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V7H5V6H4v1H3v1H1V7h1V6h1V5h1V4H3V3H2V2H1V1z" fill="currentColor" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="win98-client">
+                <div class="mf-canvas-wrap">
+                  <canvas id="game" width="650" height="500"></canvas>
+                  <div id="game-status" class="mf-status" role="status" aria-live="polite">
+                    読み込み中...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="win98-start-menu" class="win98-start-menu" role="menu" aria-label="スタートメニュー" hidden>
+            <div class="win98-start-sidebar" aria-hidden="true">
+              <span class="win98-start-brand"><strong>Windows</strong>98</span>
+            </div>
+            <div class="win98-start-items">
+              <button type="button" id="start-launch-mf" class="win98-start-item" role="menuitem">
+                <svg width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1" y="1" width="14" height="14" fill="#001848" />
+                  <rect x="11" y="2" width="2" height="2" fill="#ffff66" />
+                  <rect x="8" y="3" width="2" height="2" fill="#9933ff" />
+                  <rect x="7" y="5" width="3" height="2" fill="#7722cc" />
+                  <rect x="6" y="7" width="5" height="1" fill="#ffcc00" />
+                  <rect x="4" y="8" width="8" height="2" fill="#551199" />
+                  <rect x="2" y="11" width="12" height="3" fill="#00aa88" />
+                </svg>
+                <span>MAGIC FLIGHT</span>
+              </button>
+              <div class="win98-start-sep" role="separator"></div>
+              <a href="/" class="win98-start-item" role="menuitem">
+                <svg width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="12" height="8" fill="#000000" />
+                  <rect x="3" y="3" width="10" height="6" fill="#008080" />
+                  <rect x="5" y="10" width="6" height="1" fill="#808080" />
+                  <rect x="1" y="11" width="14" height="3" fill="#000000" />
+                  <rect x="2" y="12" width="12" height="1" fill="#c0c0c0" />
+                  <rect x="6" y="4" width="4" height="4" fill="#ff3300" />
+                  <rect x="7" y="5" width="2" height="2" fill="#ffff00" />
+                </svg>
+                <span>Windows の終了...</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="win98-taskbar">
+            <button
+              type="button"
+              id="win98-start-btn"
+              class="win98-start"
+              aria-expanded="false"
+              aria-controls="win98-start-menu"
+              aria-haspopup="menu"
+            >
+              <svg width="16" height="14" viewBox="0 0 16 14" shape-rendering="crispEdges" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="3" width="2" height="2" fill="#ff0000" />
+                <rect x="1" y="7" width="2" height="2" fill="#0000ff" />
+                <rect x="4" y="2" width="5" height="4" fill="#ff0000" />
+                <rect x="10" y="1" width="5" height="4" fill="#008000" />
+                <rect x="4" y="7" width="5" height="4" fill="#0000ff" />
+                <rect x="10" y="6" width="5" height="4" fill="#ffff00" />
+                <rect x="9" y="1" width="1" height="10" fill="#000000" />
+                <rect x="4" y="6" width="11" height="1" fill="#000000" />
+              </svg>
+              <span>スタート</span>
+            </button>
+
+            <div class="win98-divider" aria-hidden="true"></div>
+
+            <div id="win98-task-mf" class="win98-task-active" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="14" height="14" fill="#001848" />
+                <rect x="11" y="2" width="2" height="2" fill="#ffff66" />
+                <rect x="8" y="3" width="2" height="2" fill="#9933ff" />
+                <rect x="7" y="5" width="3" height="2" fill="#7722cc" />
+                <rect x="6" y="7" width="5" height="1" fill="#ffcc00" />
+                <rect x="4" y="8" width="8" height="2" fill="#551199" />
+                <rect x="2" y="11" width="12" height="3" fill="#00aa88" />
+              </svg>
+              <span>MAGIC FLIGHT</span>
+            </div>
+
+            <div class="win98-tray">
+              <span class="win98-tray-ime" aria-hidden="true" title="半角英数">A</span>
+              <button
+                type="button"
+                id="tray-sound-toggle"
+                class="win98-tray-btn"
+                aria-pressed="true"
+                aria-label="効果音のオン・オフを切り替え"
+                title="効果音 ON / OFF"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="6" width="2" height="4" fill="#000000" />
+                  <rect x="4" y="5" width="2" height="6" fill="#808080" />
+                  <rect x="6" y="3" width="2" height="10" fill="#808080" />
+                  <rect x="4" y="5" width="2" height="1" fill="#000000" />
+                  <rect x="4" y="10" width="2" height="1" fill="#000000" />
+                  <rect x="6" y="3" width="2" height="1" fill="#000000" />
+                  <rect x="6" y="12" width="2" height="1" fill="#000000" />
+                  <rect x="8" y="3" width="1" height="10" fill="#000000" />
+                  <path class="win98-speaker-waves" d="M10 6h1v4h-1V6zm2-2h1v8h-1V4z" fill="#000080" />
+                  <path class="win98-speaker-mute" d="M10 5h1v1h1v1h1V6h1V5h1v1h-1v1h-1v2h1v1h1v1h-1v-1h-1V9h-1v1h-1v1h-1v-1h1V9h1V7h-1V6h-1V5z" fill="#cc0000" />
+                </svg>
+              </button>
+              <span id="win98-clock" class="win98-clock">--:--</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mf-controls" aria-label="操作方法">
+        <dl class="mf-controls-list">
+          <div class="mf-control-row">
+            <dt class="mf-control-label">タイトル</dt>
+            <dd class="mf-control-desc">
+              クリックまたはキー入力で進み、<kbd>↑</kbd> <kbd>↓</kbd> と <kbd>Enter</kbd> で難易度を選択
+            </dd>
+          </div>
+          <div class="mf-control-row">
+            <dt class="mf-control-label">ステージ選択</dt>
+            <dd class="mf-control-desc">
+              島をクリックまたは <kbd>Tab</kbd> / <kbd>BS</kbd> で移動し、<kbd>Enter</kbd> / <kbd>Space</kbd> で開始、<kbd>Esc</kbd>
+              でタイトルへ戻る
+            </dd>
+          </div>
+          <div class="mf-control-row">
+            <dt class="mf-control-label">プレイ中</dt>
+            <dd class="mf-control-desc">
+              <kbd>Space</kbd> でスタート、半角英数 (IMEオフ) でローマ字入力、<kbd>Esc</kbd> で中止
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-note">&copy; 2026 xm-i</p>
+      <p class="footer-note">タイピングエンジン: libspark typas (shohei909) に基づく</p>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/magic-flight/main.ts"></script>
+</body>
+
+</html>

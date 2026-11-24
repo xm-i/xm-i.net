@@ -15,6 +15,7 @@ interface Product {
   id: string
   name: string
   url: string
+  actionLabel?: string
   repos: ProductRepo[]
   summary: string
   specs: ProductSpec[]
@@ -73,6 +74,32 @@ const products = ref<Product[]>([
           'ファイル名が違っても中身が同じ重複を検出できます。エクスプローラー側での移動・リネーム・削除も自動で検知し、ライブラリへ反映します。'
       }
     ]
+  },
+  {
+    id: 'magic-flight',
+    name: 'MAGIC FLIGHT',
+    url: '/magic-flight/',
+    actionLabel: 'ゲームを開く',
+    repos: [],
+    summary:
+      '1990年代後半にNECのパソコンなどにプリインストールされていたタイピングソフトをブラウザで再現したもの。',
+    specs: [
+      {
+        title: '当時の画面と演出',
+        description:
+          '月夜を飛ぶ魔女のタイトル画面、島マップ、NFER/XFERキーの付いたキーボードと両手ガイド、落下時の水しぶきまで当時の雰囲気に合わせて作り直しています。'
+      },
+      {
+        title: '魔女の飛行と7つの島',
+        description:
+          '正しく打つと魔女が飛んで進み、ミスや時間経過で下がっていきます。あいうえおの基本練習から90年代ネタ・早口言葉まで7つの島を順番に進みます。'
+      },
+      {
+        title: 'ブラウザ上での再現',
+        description:
+          '当時のPCやソフトが手元になくても、ブラウザを開くだけでそのまま遊べます。難易度はVeryEasyからVeryHardまでの5段階です。'
+      }
+    ]
   }
 ])
 
@@ -80,7 +107,14 @@ function formatIndex(index: number): string {
   return String(index + 1).padStart(2, '0')
 }
 
+function isExternalUrl(url: string): boolean {
+  return /^https?:\/\//.test(url)
+}
+
 function formatHost(url: string): string {
+  if (url.startsWith('/')) {
+    return `xm-i.net${url.replace(/\/$/, '')}`
+  }
   try {
     return new URL(url).hostname.replace(/^www\./, '')
   } catch {
@@ -150,11 +184,12 @@ function formatHost(url: string): string {
           <nav class="product-actions" :aria-label="`${product.name}の関連リンク`">
             <a
               :href="product.url"
-              target="_blank"
-              rel="noopener noreferrer"
+              :target="isExternalUrl(product.url) ? '_blank' : undefined"
+              :rel="isExternalUrl(product.url) ? 'noopener noreferrer' : undefined"
               class="btn-primary"
             >
               <svg
+                v-if="isExternalUrl(product.url)"
                 class="btn-icon"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -169,7 +204,22 @@ function formatHost(url: string): string {
                 <polyline points="15 3 21 3 21 9" />
                 <line x1="10" y1="14" x2="21" y2="3" />
               </svg>
-              サイトを開く
+              <svg
+                v-else
+                class="btn-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+              {{ product.actionLabel ?? 'サイトを開く' }}
             </a>
 
             <a
